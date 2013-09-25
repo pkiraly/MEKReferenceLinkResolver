@@ -1,0 +1,11 @@
+# Various rewrite rules.
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  # Rewrite URLs of the form 'rmny/x' to the form 'reference_redirector.php?q=rmny/x'.
+  # It is case insensitive
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^((rmny|rmk)/.*)$ reference_redirector.php?q=$1 [NC,QSA]
+</IfModule>
+
