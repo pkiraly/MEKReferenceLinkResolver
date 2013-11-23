@@ -4,13 +4,17 @@ adattábla rekordjának, és az egyes mezőket valamilyen elválasztójel, a mi 
 pontosvessző választja el. Az itt szereplő össze fájlban két mező van.
 
 A könyv-szintű megfeleltetésnél egy-egy referensz mű (RMK, RMNy) vagy szabvány (ISBN) azonosítóját
-feleltetjük meg egy MEK-ben szereplő művel.
+feleltetjük meg egy MEK-ben szereplő művel. Minden ilyen fájlból egy-egy darab van, ami tartalmazza
+az adott megfeleltetés összes elemét, tehát például egyetlen rmk.csv, amiben benne van az összes MEK
+átlal szolgáltatott RMK tétel.
 
 Az oldal-szintű azonosítás során a digitalizált könyv eredeti oldalszámait feleltetjük meg 
 a MEK-ben levő digitális másolat oldal-szintű URL-jeivel. Itt tehát a külső referencia elveszti 
 jelentősségét.
 
-# rmk.csv
+# Könyv-szintű fájlok
+
+## rmk.csv
 az RMK számok és MEK azonosítók megfeleltetése. Adatmezők:
 
 1) RMK azonosító. A formátum: [kötet]/[4 karakteres RMK szám][alfabetikus kiegészítő] (opcionális). 
@@ -27,7 +31,7 @@ ez azt jelenti, hogy
 * az RMK I 332. megfelel a mek.oszk.hu/08800/08838 könyvnek
 * az RMK I 94. megfelel a mek.oszk.hu/11900/11957 könyvnek
 
-# rmny.csv
+## rmny.csv
 RMNy számok és MEK azonosítók megfeleltetése. Adatmezők:
 
 1) RMNy azonosító. A formátum: [kötet]/[4 karakteres RMNy szám][alfabetikus kiegészítő] (opcionális)
@@ -44,11 +48,20 @@ ez azt jelenti, hogy
 * az RMNy 353. megfelel a mek.oszk.hu/08800/08838 könyvnek
 * az RMNy 327. megfelel a mek.oszk.hu/11900/11957 könyvnek
 
-# [MEK ID].csv
-Ahol a [MEK ID] helyett egy konkrét MEK azonosító szerepel, példáult 08838.csv
+# Oldal-szintű fájlok
 
-MEK 08838-as könyv belső oldalszámozásának és a tényleges
-oldalszámozásnak a megfeleltetése
+MEK tételenként egy-egy ilyen fájl lehetséges, mely tartalmazhatja az összes oldalt, vagy csak kiválasztott,
+valamilyen szempontból fontosnak tartott oldalakat.
+
+A fájl neve mindig ezt a formát követi:
+<pre>
+  [MEK ID].csv
+</pre>
+ahol a [MEK ID] helyett egy konkrét MEK azonosító szerepel, példáult 08838.csv
+
+A fájl célja MEK 08838-as könyv digitalizált oldalai URL-jeinek és a nyomtatott könyv tényleges
+oldalszámozásnak a megfeleltetése.
+
 például:
 <pre>
   1/0003A;hu_b1_rmk-1-113a_012
