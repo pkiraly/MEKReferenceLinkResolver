@@ -14,6 +14,31 @@ Az oldal-szintű azonosítás során a digitalizált könyv eredeti oldalszámai
 feleltetjük meg a MEK-ben levő digitális másolat oldal-szintű URL-jeivel.
 Itt tehát a külső referencia elveszti jelentősségét.
 
+Jelenleg a következő megfeleltetések vannak:
+
+| RMNy | RMK1 | MEK |
+| --- | --- | --- |
+| 303 | 338 |  |
+| 327 | 94 | 11900/11957 |
+| 348 | 109 |  |
+| 350 | 111 |  |
+| 353 | 332 | 08800/08838 |
+| 359 | 117 |  |
+| 437 | 154 |  |
+| 438 | 155 |  |
+| 439 | 156 | 12000/12086 |
+| 441 | 159 |  |
+| 458 |  | 12000/12022 |
+| 460 | 166 |  |
+| 468 | 174 |  |
+| 492 | 181 |  |
+| 493 | 182 |  |
+| 510 | 193 |  |
+| 531 |  | 12100/12124 |
+| 540 | 208 | 03600/03614 |
+| 956 |  | 12100/12140 |
+| 957 |  | 12100/12140 |
+
 # Könyv-szintű fájlok
 
 ## rmk.csv
