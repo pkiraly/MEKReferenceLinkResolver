@@ -1,26 +1,27 @@
-A linkfeloldó két fajta fájlt kezel: könyv-szintű és oldal szintű CSV fájlokat. A CSV 
-feloldása: comma separated values, egy egyszerű szövegfájl, amiben egy sor megfelel egy 
-adattábla rekordjának, és az egyes mezőket valamilyen elválasztójel, a mi esetünkben
-pontosvessző választja el. Az itt szereplő össze fájlban két mező van.
+A linkfeloldó két fajta fájlt kezel: könyv-szintű és oldal szintű CSV fájlokat.
+A CSV feloldása: comma separated values, egy egyszerű szövegfájl, 
+amiben egy sor megfelel egy adattábla rekordjának, és az egyes mezőket
+valamilyen elválasztójel, a mi esetünkben pontosvessző választja el. Az 
+itt szereplő össze fájlban két mező van.
 
-A könyv-szintű megfeleltetésnél egy-egy referensz mű (RMK, RMNy) vagy szabvány (ISBN) azonosítóját
-feleltetjük meg egy MEK-ben szereplő művel. Minden ilyen fájlból egy-egy darab van, ami tartalmazza
-az adott megfeleltetés összes elemét, tehát például egyetlen rmk.csv, amiben benne van az összes MEK
-átlal szolgáltatott RMK tétel.
+A könyv-szintű megfeleltetésnél egy-egy referensz mű (RMK, RMNy) 
+vagy szabvány (ISBN) azonosítóját feleltetjük meg egy MEK-ben 
+szereplő művel. Minden ilyen fájlból egy-egy darab van, ami tartalmazza
+az adott megfeleltetés összes elemét, tehát például egyetlen rmk.csv, 
+amiben benne van az összes MEK által szolgáltatott RMK tétel.
 
-Az oldal-szintű azonosítás során a digitalizált könyv eredeti oldalszámait feleltetjük meg 
-a MEK-ben levő digitális másolat oldal-szintű URL-jeivel. Itt tehát a külső referencia elveszti 
-jelentősségét.
+Az oldal-szintű azonosítás során a digitalizált könyv eredeti oldalszámait
+feleltetjük meg a MEK-ben levő digitális másolat oldal-szintű URL-jeivel.
+Itt tehát a külső referencia elveszti jelentősségét.
 
 # Könyv-szintű fájlok
 
 ## rmk.csv
 az RMK számok és MEK azonosítók megfeleltetése. Adatmezők:
 
-1) RMK azonosító. A formátum: [kötet]/[4 karakteres RMK szám][alfabetikus kiegészítő] (opcionális). 
-Ha az alap RMK szám nem 4 karakteres, akkor balról 0-val kell feltölteni, például 94 helyett 0094-et kell
-írni.
-2) [MEK könyvtárnév]/[MEK azonosító]
+1. RMK azonosító. A formátum: [kötet]/[4 karakteres RMK szám][alfabetikus kiegészítő] (opcionális). Ha az alap RMK szám nem 4 karakteres, akkor 
+balról 0-val kell feltölteni, például 94 helyett 0094-et kell írni.
+2. [MEK könyvtárnév]/[MEK azonosító]
 
 például:
 <pre>
@@ -34,10 +35,10 @@ ez azt jelenti, hogy
 ## rmny.csv
 RMNy számok és MEK azonosítók megfeleltetése. Adatmezők:
 
-1) RMNy azonosító. A formátum: [kötet]/[4 karakteres RMNy szám][alfabetikus kiegészítő] (opcionális)
-Ha az alap RMNy szám nem 4 karakteres, akkor balról 0-val kell feltölteni, például 94 helyett 0094-et kell
-írni.
-2) [MEK könyvtárnév]/[MEK azonosító]
+1. RMNy azonosító. A formátum: [kötet]/[4 karakteres RMNy szám][alfabetikus kiegészítő] (opcionális)
+Ha az alap RMNy szám nem 4 karakteres, akkor balról 0-val kell feltölteni,
+például 94 helyett 0094-et kell írni.
+2. [MEK könyvtárnév]/[MEK azonosító]
 
 például:
 <pre>
@@ -50,22 +51,25 @@ ez azt jelenti, hogy
 
 # Oldal-szintű fájlok
 
-MEK tételenként egy-egy ilyen fájl lehetséges, mely tartalmazhatja az összes oldalt, vagy csak kiválasztott,
-valamilyen szempontból fontosnak tartott oldalakat.
+MEK tételenként egy-egy ilyen fájl lehetséges, mely tartalmazhatja az
+összes oldalt, vagy csak kiválasztott, valamilyen szempontból fontosnak
+tartott oldalakat.
 
 A fájl neve mindig ezt a formát követi:
 <pre>
   [MEK ID].csv
 </pre>
-ahol a [MEK ID] helyett egy konkrét MEK azonosító szerepel, példáult 08838.csv
+ahol a [MEK ID] helyett egy konkrét MEK azonosító szerepel, például 08838.csv
 
-A fájl célja MEK 08838-as könyv digitalizált oldalai URL-jeinek és a nyomtatott könyv tényleges
-oldalszámozásnak a megfeleltetése. Adatelemek:
+A fájl célja MEK 08838-as könyv digitalizált oldalai URL-jeinek és a 
+nyomtatott könyv tényleges oldalszámozásnak a megfeleltetése. 
+Adatelemek:
 
-1) a nyomtatott mű oldalszáma a következő formában: 
-[kötet]/[4 karakteres oldalszám][alphabetikus kiegészítő] ahol a kötet és az aphabetikus kiegészítő
-(például A, B, R (=recto), V (=verso) és így tovább) opcionális elem.
-2) a digitális oldal URL-je
+1. a nyomtatott mű oldalszáma a következő formában: 
+[kötet]/[4 karakteres oldalszám][alphabetikus kiegészítő] ahol a kötet és az
+aphabetikus kiegészítő (például A, B, R (=recto), V (=verso) és így tovább)
+opcionális elem.
+2. a digitális oldal URL-je
 
 például:
 <pre>
