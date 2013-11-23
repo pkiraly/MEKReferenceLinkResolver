@@ -60,7 +60,12 @@ A fájl neve mindig ezt a formát követi:
 ahol a [MEK ID] helyett egy konkrét MEK azonosító szerepel, példáult 08838.csv
 
 A fájl célja MEK 08838-as könyv digitalizált oldalai URL-jeinek és a nyomtatott könyv tényleges
-oldalszámozásnak a megfeleltetése.
+oldalszámozásnak a megfeleltetése. Adatelemek:
+
+1) a nyomtatott mű oldalszáma a következő formában: 
+[kötet]/[4 karakteres oldalszám][alphabetikus kiegészítő] ahol a kötet és az aphabetikus kiegészítő
+(például A, B, R (=recto), V (=verso) és így tovább) opcionális elem.
+2) a digitális oldal URL-je
 
 például:
 <pre>
