@@ -1,21 +1,56 @@
-A
+A linkfeloldó két fajta fájlt kezel: könyv-szintű és oldal szintű CSV fájlokat. A CSV 
+feloldása: comma separated values, egy egyszerű szövegfájl, amiben egy sor megfelel egy 
+adattábla rekordjának, és az egyes mezőket valamilyen elválasztójel, a mi esetünkben
+pontosvessző választja el. Az itt szereplő össze fájlban két mező van.
 
-rmk.csv - az RMK számok és MEK azonosítók megfeleltetése
+A könyv-szintű megfeleltetésnél egy-egy referensz mű (RMK, RMNy) vagy szabvány (ISBN) azonosítóját
+feleltetjük meg egy MEK-ben szereplő művel.
+
+Az oldal-szintű azonosítás során a digitalizált könyv eredeti oldalszámait feleltetjük meg 
+a MEK-ben levő digitális másolat oldal-szintű URL-jeivel. Itt tehát a külső referencia elveszti 
+jelentősségét.
+
+# rmk.csv
+az RMK számok és MEK azonosítók megfeleltetése. Adatmezők:
+
+1) RMK azonosító. A formátum: [kötet]/[4 karakteres RMK szám][alfabetikus kiegészítő] (opcionális). 
+Ha az alap RMK szám nem 4 karakteres, akkor balról 0-val kell feltölteni, például 94 helyett 0094-et kell
+írni.
+2) [MEK könyvtárnév]/[MEK azonosító]
+
 például:
- 1/0332;08800/08838
- 1/0094;11900/11957
+<pre>
+  1/0332;08800/08838
+  1/0094;11900/11957
+</pre>
 ez azt jelenti, hogy 
-az RMK I 332. megfelel a mek.oszk.hu/08800/08838 könyvnek
-az RMK I 94. megfelel a mek.oszk.hu/11900/11957 könyvnek
+* az RMK I 332. megfelel a mek.oszk.hu/08800/08838 könyvnek
+* az RMK I 94. megfelel a mek.oszk.hu/11900/11957 könyvnek
 
-rmny.csv - RMNy számok és MEK azonosítók megfeleltetése
+# rmny.csv
+RMNy számok és MEK azonosítók megfeleltetése. Adatmezők:
+
+1) RMNy azonosító. A formátum: [kötet]/[4 karakteres RMNy szám][alfabetikus kiegészítő] (opcionális)
+Ha az alap RMNy szám nem 4 karakteres, akkor balról 0-val kell feltölteni, például 94 helyett 0094-et kell
+írni.
+2) [MEK könyvtárnév]/[MEK azonosító]
+
 például:
- 353;08800/08838
- 0327;11900/11957
-ez azt jelenti, hogy az RMNy 353. megfelel a mek.oszk.hu/08800/08838 könyvnek
+<pre>
+  353;08800/08838
+  0327;11900/11957
+</pre>
+ez azt jelenti, hogy
+* az RMNy 353. megfelel a mek.oszk.hu/08800/08838 könyvnek
+* az RMNy 327. megfelel a mek.oszk.hu/11900/11957 könyvnek
 
-08838.csv - MEK 08838-as könyv belső oldalszámozásának és a tényleges
+# [MEK ID].csv
+Ahol a [MEK ID] helyett egy konkrét MEK azonosító szerepel, példáult 08838.csv
+
+MEK 08838-as könyv belső oldalszámozásának és a tényleges
 oldalszámozásnak a megfeleltetése
 például:
- 1/0003A;hu_b1_rmk-1-113a_012
+<pre>
+  1/0003A;hu_b1_rmk-1-113a_012
+</pre>
 ez azt jelenti, hogy az első kötet 0003A oldala megfelel az mek.oszk.hu/08800/08838-en belül a hu_b1_rmk-1-113a_012.html oldalnak.
