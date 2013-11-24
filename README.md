@@ -44,8 +44,8 @@ Jelenleg a következő megfeleltetések vannak:
 ## rmk.csv
 az RMK számok és MEK azonosítók megfeleltetése. Adatmezők:
 
-1. RMK azonosító. A formátum: [kötet]/[4 karakteres RMK szám][alfabetikus kiegészítő] (opcionális). Ha az alap RMK szám nem 4 karakteres, akkor 
-balról 0-val kell feltölteni, például 94 helyett 0094-et kell írni.
+1. RMK azonosító. A formátum: [kötet]/[4 karakteres RMK szám][opcionális alfabetikus kiegészítő].
+Ha az alap RMK szám nem 4 karakteres, akkor  balról 0-val kell feltölteni, például 94 helyett 0094-et kell írni.
 2. [MEK könyvtárnév]/[MEK azonosító]
 
 például:
@@ -60,7 +60,7 @@ ez azt jelenti, hogy
 ## rmny.csv
 RMNy számok és MEK azonosítók megfeleltetése. Adatmezők:
 
-1. RMNy azonosító. A formátum: [kötet]/[4 karakteres RMNy szám][alfabetikus kiegészítő] (opcionális)
+1. RMNy azonosító. A formátum: [4 karakteres RMNy szám][opcionális alfabetikus kiegészítő]
 Ha az alap RMNy szám nem 4 karakteres, akkor balról 0-val kell feltölteni,
 például 94 helyett 0094-et kell írni.
 2. [MEK könyvtárnév]/[MEK azonosító]
