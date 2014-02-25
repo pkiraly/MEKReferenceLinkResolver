@@ -2,6 +2,7 @@
 
 define('DEFAULT_URL', 'http://mek.oszk.hu/');
 define('CSV_DIR', 'reference_redirector_csv');
+define('LN', "\n");
 
 /**
  * Resolve URLs based on 'Káldos-convention'
@@ -136,13 +137,13 @@ function get_record_by_key($csv_file, $identifier) {
  */
 function get_csv_identifier($volume_id, $page_id) {
   $identifier = FALSE;
-  if (preg_match('/^(\d+|\d+[A-Z]\d)([rRvVaAbB]?)$/', $page_id, $matches)) {
+  if (preg_match('/^(\d+|\d+[A-Zacfhklmnopq]\d)([rRvVaAbBC]?)$/', $page_id, $matches)) {
     $num   = $matches[1];
     $alpha = $matches[2];
     while (strlen($num) < 4) {
       $num = '0' . $num;
     }
-    if (empty($alpha)) {
+    if (empty($alpha) && $num != '0000') {
       $alpha = 'A';
     }
     else {
