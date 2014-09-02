@@ -1,7 +1,9 @@
-= A projektről =
+A projektről
+====
 A projekt hátteréről és céljáról lásd: http://kirunews.blog.hu/2010/12/16/mek_referensz_link_feloldo
 
-= Technikai leírás =
+Technikai leírás
+====
 A linkfeloldó két fajta fájlt kezel: könyv-szintű és oldal szintű CSV fájlokat.
 A CSV feloldása: comma separated values, egy egyszerű szövegfájl, 
 amiben egy sor megfelel egy adattábla rekordjának, és az egyes mezőket
