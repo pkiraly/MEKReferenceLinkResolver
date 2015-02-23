@@ -19,7 +19,7 @@ class ResulverTest extends PHPUnit_Framework_TestCase {
   }
 
   public function testGetRecordByKey() {
-    $this->assertEquals(MEK . $mekId, resolve_url($bookUrl), "Testing $bookUrl");
+    // $this->assertEquals(MEK . $mekId, resolve_url($bookUrl), "Testing $bookUrl");
     $this->assertEquals(array('2/0038B', 'hu_b1_rmk-1-113a_409'),
       get_record_by_key('reference_redirector_csv/08838.csv', '2/0038B'));
     $this->assertEquals(MEK . '08800/08838/html/hu_b1_rmk-1-113a_409.html', 
@@ -31,8 +31,10 @@ class ResulverTest extends PHPUnit_Framework_TestCase {
   public function testResolveUrl() {
     $pairs = array(
       'rmk/1/0332' => '08800/08838',
-      'rmny/0080/0000' => '12200/12278/html/RMK_I_0322_0001.html'
+      'rmny/0080/0000' => '12200/12278/html/RMK_I_0322_0001.html',
+      'ms/hu/B1/MNy/12/308' => '12900/12986/html/hu_b1_mny12_0328.html'
     );
+
     foreach ($pairs as $url => $mekPath) {
       $this->assertEquals(MEK . $mekPath, resolve_url($url), "Testing $url");
     }
@@ -40,9 +42,13 @@ class ResulverTest extends PHPUnit_Framework_TestCase {
 
   public function testRmny() {
     $skip = array(
-      'rmny/0353/2/0038B', 'rmny/0353/2/0073A',
-      'rmny/0017/0016A', 'rmny/0017/0025A', 'rmny/0017/0057A', 'rmny/0017/0065A',
-        'rmny/0017/0083A', 
+      'rmny/0353/2/0038B',
+      'rmny/0353/2/0073A',
+      'rmny/0017/0016A',
+      'rmny/0017/0025A',
+      'rmny/0017/0057A',
+      'rmny/0017/0065A',
+      'rmny/0017/0083A',
     );
     $this->assertEquals(MEK, resolve_url('rmny'));
     $this->doTestBooks('rmny', $skip);
@@ -50,12 +56,22 @@ class ResulverTest extends PHPUnit_Framework_TestCase {
 
   public function testRmk() {
     $skip = array(
-      'rmk/1/0332/2/0038B', 'rmk/1/0332/2/0073A',
-      'rmk/1/0007/0016A', 'rmk/1/0007/0025A', 'rmk/1/0007/0057A', 'rmk/1/0007/0065A',
-        'rmk/1/0007/0083A',
+      'rmk/1/0332/2/0038B',
+      'rmk/1/0332/2/0073A',
+      'rmk/1/0007/0016A',
+      'rmk/1/0007/0025A',
+      'rmk/1/0007/0057A',
+      'rmk/1/0007/0065A',
+      'rmk/1/0007/0083A',
     );
     $this->assertEquals(MEK, resolve_url('rmk'));
     $this->doTestBooks('rmk', $skip);
+  }
+
+  public function testMs() {
+    $skip = array();
+    $this->assertEquals(MEK, resolve_url('ms'));
+    $this->doTestBooks('ms', $skip);
   }
 
   public function doTestBooks($prefix, $skip = array()) {

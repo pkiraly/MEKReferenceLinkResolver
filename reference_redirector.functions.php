@@ -17,6 +17,9 @@ function resolve_url($fullpath) {
     case 'rmk':
       $url = get_rmk_url($parts);
       break;
+    case 'ms':
+      $url = get_ms_url($parts);
+      break;
     default:
       $url = DEFAULT_URL;
   }
@@ -30,7 +33,11 @@ function get_rmny_url($parts) {
   if (count($parts) < 2) {
     return DEFAULT_URL;
   }
+
   $book_id = $parts[1];
+  $volume_id = '';
+  $page_id = '';
+
   if (count($parts) == 4) {
     $volume_id = $parts[2];
     $page_id = $parts[3];
@@ -42,7 +49,9 @@ function get_rmny_url($parts) {
   while (preg_match('/^\d{1,3}\D?$/', $book_id)) {
     $book_id = '0' . $book_id;
   }
+
   $mek_dir = rmny2mek($book_id);
+
   return get_page_url($mek_dir, $volume_id, $page_id);
 }
 
@@ -56,6 +65,8 @@ function get_rmk_url($parts) {
 
   $rmk_volume = $parts[1];
   $book_id = $parts[2];
+  $volume_id = '';
+  $page_id = '';
 
   if (count($parts) == 5) {
     $volume_id = $parts[3];
@@ -65,6 +76,7 @@ function get_rmk_url($parts) {
     $rmk_volume = 1;
     $page_id = $parts[3];
   }
+
   if (strtoupper($rmk_volume) == 'I') {
     $rmk_volume = 1;
   }
@@ -83,6 +95,57 @@ function get_rmk_url($parts) {
 }
 
 /**
+ * Get the URL of an RMK page
+ */
+function get_ms_url($parts) {
+  if (count($parts) < 4) {
+    return DEFAULT_URL;
+  }
+
+  $country = $parts[1];
+  $library = $parts[2];
+  $collection = '';
+  $book_id = '';
+  $volume_id = '';
+  $page_id = '';
+
+  if (count($parts) == 7) {
+    $collection = $parts[3];
+    $book_id = $parts[4];
+    $volume_id = $parts[5];
+    $page_id = $parts[6];
+  }
+  else if (count($parts) == 6) {
+    $collection = $parts[3];
+    $book_id = $parts[4];
+    $page_id = $parts[5];
+  }
+  else if (count($parts) == 5) {
+    $collection = $parts[3];
+    $book_id = $parts[4];
+  }
+
+  if (strtoupper($volume_id) == 'I') {
+    $volume_id = 1;
+  }
+  else if (strtoupper($volume_id) == 'II') {
+    $volume_id = 2;
+  }
+  else if (strtoupper($volume_id) == 'III') {
+    $volume_id = 3;
+  }
+
+  while (preg_match('/^\d{1,3}\D?$/', $book_id)) {
+    $book_id = '0' . $book_id;
+  }
+
+  $mek_dir = ms2mek(sprintf("%s/%s/%s/%s",
+    strtoupper($country), strtoupper($library), strtoupper($collection), $book_id));
+
+  return get_page_url($mek_dir, $volume_id, $page_id);
+}
+
+/**
  * Get MEK ID by RMNy ID
  */
 function rmny2mek($rmny_id) {
@@ -95,6 +158,14 @@ function rmny2mek($rmny_id) {
  */
 function rmk2mek($rmk_id) {
   $record = get_record_by_key(CSV_DIR . '/rmk.csv', $rmk_id);
+  return $record[1];
+}
+
+/**
+ * Get MEK ID by MS ID
+ */
+function ms2mek($rmk_id) {
+  $record = get_record_by_key(CSV_DIR . '/ms.csv', $rmk_id);
   return $record[1];
 }
 
@@ -140,6 +211,7 @@ function get_csv_identifier($volume_id, $page_id) {
   if (preg_match('/^(\d+|\d+[A-Zacfhklmnopq]\d)([rRvVaAbBC]?)$/', $page_id, $matches)) {
     $num   = $matches[1];
     $alpha = $matches[2];
+
     while (strlen($num) < 4) {
       $num = '0' . $num;
     }
@@ -155,7 +227,7 @@ function get_csv_identifier($volume_id, $page_id) {
         $alpha = 'B';
       }
     }
-    $identifier = (isset($volume_id) ? $volume_id . '/' : '') . $num . $alpha;
+    $identifier = (isset($volume_id) && !empty($volume_id) ? $volume_id . '/' : '') . $num . $alpha;
   }
   return $identifier;
 }
@@ -186,6 +258,7 @@ function get_page_url($mek_dir, $volume_id, $page_id) {
   }
 
   $identifier = get_csv_identifier($volume_id, $page_id);
+
   if ($identifier === FALSE) {
     return DEFAULT_URL . $mek_dir;
   }
