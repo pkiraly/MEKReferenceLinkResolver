@@ -8,7 +8,7 @@ A linkfeloldó két fajta fájlt kezel: könyv-szintű és oldal szintű CSV fá
 A CSV feloldása: comma separated values, egy egyszerű szövegfájl, 
 amiben egy sor megfelel egy adattábla rekordjának, és az egyes mezőket
 valamilyen elválasztójel, a mi esetünkben pontosvessző választja el. Az 
-itt szereplő össze fájlban két mező van.
+itt szereplő összes fájlban két mező van.
 
 A könyv-szintű megfeleltetésnél egy-egy referensz mű (RMK, RMNy) 
 vagy szabvány (ISBN) azonosítóját feleltetjük meg egy MEK-ben 
