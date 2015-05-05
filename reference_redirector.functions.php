@@ -183,8 +183,13 @@ function ms2mek($rmk_id) {
 function get_record_by_key($csv_file, $identifier) {
   $result = FALSE;
   $handle = fopen($csv_file, "r");
+  $regex = '';
+  if (preg_match('/A$/', $identifier)) {
+    $regex = '/^' . str_replace('/', '\/', $identifier) . '?$/';
+  }
   while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-    if ($data[0] == $identifier) {
+    $id = $data[0];
+    if ($id == $identifier || ($regex != '' && preg_match($regex, $id))) {
       $result = $data;
       break;
     }
@@ -208,7 +213,7 @@ function get_record_by_key($csv_file, $identifier) {
  */
 function get_csv_identifier($volume_id, $page_id) {
   $identifier = FALSE;
-  if (preg_match('/^(\d+|\d+[A-Zacfhklmnopq]\d)([rRvVaAbBC]?)$/', $page_id, $matches)) {
+  if (preg_match('/^(\d+|\d+[A-Zacfhklmnopq][\dA])([rRvVaAbBC]?)$/', $page_id, $matches)) {
     $num   = $matches[1];
     $alpha = $matches[2];
 
