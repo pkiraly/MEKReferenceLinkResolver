@@ -183,13 +183,13 @@ function ms2mek($rmk_id) {
 function get_record_by_key($csv_file, $identifier) {
   $result = FALSE;
   $handle = fopen($csv_file, "r");
-  $regex = '';
+  $alternativeIdentifier = '';
   if (preg_match('/A$/', $identifier)) {
-    $regex = '/^' . str_replace('/', '\/', $identifier) . '?$/';
+    $alternativeIdentifier = preg_replace('/A$/', '', $identifier);
   }
   while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     $id = $data[0];
-    if ($id == $identifier || ($regex != '' && preg_match($regex, $id))) {
+    if ($id == $identifier || ($alternativeIdentifier != '' && $id == $alternativeIdentifier)) {
       $result = $data;
       break;
     }
