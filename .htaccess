@@ -6,6 +6,6 @@
   # It is case insensitive
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^((rmny|rmk)/.*)$ reference_redirector.php?q=$1 [NC,QSA]
+  RewriteRule ^((rmny|rmk|ms)/.*)$ reference_redirector.php?q=$1 [NC,QSA]
 </IfModule>
 
