@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mekreferencelinkresolver by pkiraly</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Mekreferencelinkresolver</h1>
+      <h2 class="project-tagline">Reference link resolver for Hungarian Electronic Library</h2>
+      <a href="https://github.com/pkiraly/MEKReferenceLinkResolver" class="btn">View on GitHub</a>
+      <a href="https://github.com/pkiraly/MEKReferenceLinkResolver/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/pkiraly/MEKReferenceLinkResolver/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="a-projektről" class="anchor" href="#a-projektr%C5%91l" aria-hidden="true"><span class="octicon octicon-link"></span></a>A projektről</h1>
+
+<p>A projekt hátteréről és céljáról lásd: <a href="http://kirunews.blog.hu/2010/12/16/mek_referensz_link_feloldo">http://kirunews.blog.hu/2010/12/16/mek_referensz_link_feloldo</a></p>
+
+<h1>
+<a id="technikai-leírás" class="anchor" href="#technikai-le%C3%ADr%C3%A1s" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technikai leírás</h1>
+
+<p>A linkfeloldó két fajta fájlt kezel: könyv-szintű és oldal szintű CSV fájlokat.
+A CSV feloldása: comma separated values, egy egyszerű szövegfájl, 
+amiben egy sor megfelel egy adattábla rekordjának, és az egyes mezőket
+valamilyen elválasztójel, a mi esetünkben pontosvessző választja el. Az 
+itt szereplő összes fájlban két mező van.</p>
+
+<p>A könyv-szintű megfeleltetésnél egy-egy referensz mű (RMK, RMNy) 
+vagy szabvány (ISBN) azonosítóját feleltetjük meg egy MEK-ben 
+szereplő művel. Minden ilyen fájlból egy-egy darab van, ami tartalmazza
+az adott megfeleltetés összes elemét, tehát például egyetlen rmk.csv, 
+amiben benne van az összes MEK által szolgáltatott RMK tétel.</p>
+
+<p>Az oldal-szintű azonosítás során a digitalizált könyv eredeti oldalszámait
+feleltetjük meg a MEK-ben levő digitális másolat oldal-szintű URL-jeivel.
+Itt tehát a külső referencia elveszti jelentősségét.</p>
+
+<p>Jelenleg a következő megfeleltetések vannak:</p>
+
+<table>
+<thead>
+<tr>
+<th>RMNy</th>
+<th>RMK1</th>
+<th>MEK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>17</td>
+<td>7</td>
+<td>12200/12273</td>
+</tr>
+<tr>
+<td>80</td>
+<td>322</td>
+<td>12200/12278</td>
+</tr>
+<tr>
+<td>109</td>
+<td>33</td>
+<td>12200/12294</td>
+</tr>
+<tr>
+<td>299</td>
+<td>323</td>
+<td>12400/12450</td>
+</tr>
+<tr>
+<td>303</td>
+<td>338</td>
+<td>11900/11991</td>
+</tr>
+<tr>
+<td>327</td>
+<td>94</td>
+<td>11900/11957</td>
+</tr>
+<tr>
+<td>348</td>
+<td>109</td>
+<td>12000/12046</td>
+</tr>
+<tr>
+<td>350</td>
+<td>111</td>
+<td>12000/12050</td>
+</tr>
+<tr>
+<td>353</td>
+<td>332</td>
+<td>08800/08838</td>
+</tr>
+<tr>
+<td>359</td>
+<td>117</td>
+<td>12000/12036</td>
+</tr>
+<tr>
+<td>385</td>
+<td>128</td>
+<td>12200/12277</td>
+</tr>
+<tr>
+<td>386</td>
+<td>131</td>
+<td>12200/12272</td>
+</tr>
+<tr>
+<td>437</td>
+<td>154</td>
+<td>12000/12045</td>
+</tr>
+<tr>
+<td>438</td>
+<td>155</td>
+<td>12000/12030</td>
+</tr>
+<tr>
+<td>439</td>
+<td>156</td>
+<td>12000/12023</td>
+</tr>
+<tr>
+<td>441</td>
+<td>159</td>
+<td>12000/12035</td>
+</tr>
+<tr>
+<td>458</td>
+<td>165</td>
+<td>12000/12022</td>
+</tr>
+<tr>
+<td>460</td>
+<td>166</td>
+<td>12000/12031</td>
+</tr>
+<tr>
+<td>461</td>
+<td>343</td>
+<td>12200/12282</td>
+</tr>
+<tr>
+<td>465</td>
+<td>168</td>
+<td>12300/12373</td>
+</tr>
+<tr>
+<td>468</td>
+<td>174</td>
+<td>12000/12027</td>
+</tr>
+<tr>
+<td>492</td>
+<td>181</td>
+<td>12000/12039</td>
+</tr>
+<tr>
+<td>493</td>
+<td>182</td>
+<td>12000/12020</td>
+</tr>
+<tr>
+<td>510</td>
+<td>193</td>
+<td>12000/12019</td>
+</tr>
+<tr>
+<td>531</td>
+<td>210</td>
+<td>12100/12124</td>
+</tr>
+<tr>
+<td>540</td>
+<td>208</td>
+<td>03600/03614</td>
+</tr>
+<tr>
+<td>662</td>
+<td>243</td>
+<td>12300/12387</td>
+</tr>
+<tr>
+<td>683</td>
+<td>255</td>
+<td>12300/12388</td>
+</tr>
+<tr>
+<td>686</td>
+<td>257</td>
+<td>12700/12742</td>
+</tr>
+<tr>
+<td>687</td>
+<td>258</td>
+<td>12600/12640</td>
+</tr>
+<tr>
+<td>774</td>
+<td>280</td>
+<td>12300/12374</td>
+</tr>
+<tr>
+<td>815</td>
+<td>298</td>
+<td>12500/12550</td>
+</tr>
+<tr>
+<td>820</td>
+<td>317</td>
+<td>12600/12680</td>
+</tr>
+<tr>
+<td>858</td>
+<td>311</td>
+<td>12200/12281</td>
+</tr>
+<tr>
+<td>869</td>
+<td>315</td>
+<td>12200/12295</td>
+</tr>
+<tr>
+<td>945</td>
+<td>403</td>
+<td>12700/12774</td>
+</tr>
+<tr>
+<td>952</td>
+<td>405</td>
+<td>12700/12770</td>
+</tr>
+<tr>
+<td>953</td>
+<td>358</td>
+<td>12500/12594</td>
+</tr>
+<tr>
+<td>954</td>
+<td>327</td>
+<td>12600/12681</td>
+</tr>
+<tr>
+<td>956</td>
+<td>362</td>
+<td>12100/12140</td>
+</tr>
+<tr>
+<td>957</td>
+<td>363</td>
+<td>12100/12139</td>
+</tr>
+<tr>
+<td>998</td>
+<td>430</td>
+<td>12700/12741</td>
+</tr>
+<tr>
+<td>1102</td>
+<td>461</td>
+<td>12700/12728</td>
+</tr>
+<tr>
+<td>1166</td>
+<td>482</td>
+<td>12500/12549</td>
+</tr>
+<tr>
+<td>1118</td>
+<td>1188</td>
+<td>12700/12757</td>
+</tr>
+<tr>
+<td>1629</td>
+<td>652</td>
+<td>12500/12580</td>
+</tr>
+<tr>
+<td>1213</td>
+<td>500a</td>
+<td>13600/13641</td>
+</tr>
+<tr>
+<td>﻿2146﻿</td>
+<td>786d</td>
+<td>12400/12442</td>
+</tr>
+<tr>
+<td>2472</td>
+<td>872</td>
+<td>13600/13645</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<a id="könyv-szintű-fájlok" class="anchor" href="#k%C3%B6nyv-szint%C5%B1-f%C3%A1jlok" aria-hidden="true"><span class="octicon octicon-link"></span></a>Könyv-szintű fájlok</h1>
+
+<h2>
+<a id="rmkcsv" class="anchor" href="#rmkcsv" aria-hidden="true"><span class="octicon octicon-link"></span></a>rmk.csv</h2>
+
+<p>az RMK számok és MEK azonosítók megfeleltetése. Adatmezők:</p>
+
+<ol>
+<li>RMK azonosító. A formátum: [kötet]/[4 karakteres RMK szám][opcionális alfabetikus kiegészítő].
+Ha az alap RMK szám nem 4 karakteres, akkor  balról 0-val kell feltölteni, például 94 helyett 0094-et kell írni.</li>
+<li>[MEK könyvtárnév]/[MEK azonosító]</li>
+</ol>
+
+<p>például:</p>
+
+<pre>
+  1/0332;08800/08838
+  1/0094;11900/11957
+</pre>
+
+<p>ez azt jelenti, hogy </p>
+
+<ul>
+<li>az RMK I 332. megfelel a mek.oszk.hu/08800/08838 könyvnek</li>
+<li>az RMK I 94. megfelel a mek.oszk.hu/11900/11957 könyvnek</li>
+</ul>
+
+<h2>
+<a id="rmnycsv" class="anchor" href="#rmnycsv" aria-hidden="true"><span class="octicon octicon-link"></span></a>rmny.csv</h2>
+
+<p>RMNy számok és MEK azonosítók megfeleltetése. Adatmezők:</p>
+
+<ol>
+<li>RMNy azonosító. A formátum: [4 karakteres RMNy szám][opcionális alfabetikus kiegészítő]
+Ha az alap RMNy szám nem 4 karakteres, akkor balról 0-val kell feltölteni,
+például 94 helyett 0094-et kell írni.</li>
+<li>[MEK könyvtárnév]/[MEK azonosító]</li>
+</ol>
+
+<p>például:</p>
+
+<pre>
+  353;08800/08838
+  0327;11900/11957
+</pre>
+
+<p>ez azt jelenti, hogy</p>
+
+<ul>
+<li>az RMNy 353. megfelel a mek.oszk.hu/08800/08838 könyvnek</li>
+<li>az RMNy 327. megfelel a mek.oszk.hu/11900/11957 könyvnek</li>
+</ul>
+
+<h1>
+<a id="oldal-szintű-fájlok" class="anchor" href="#oldal-szint%C5%B1-f%C3%A1jlok" aria-hidden="true"><span class="octicon octicon-link"></span></a>Oldal-szintű fájlok</h1>
+
+<p>MEK tételenként egy-egy ilyen fájl lehetséges, mely tartalmazhatja az
+összes oldalt, vagy csak kiválasztott, valamilyen szempontból fontosnak
+tartott oldalakat.</p>
+
+<p>A fájl neve mindig ezt a formát követi:</p>
+
+<pre>
+  [MEK ID].csv
+</pre>
+
+<p>ahol a [MEK ID] helyett egy konkrét MEK azonosító szerepel, például 08838.csv</p>
+
+<p>A fájl célja MEK 08838-as könyv digitalizált oldalai URL-jeinek és a 
+nyomtatott könyv tényleges oldalszámozásnak a megfeleltetése. 
+Adatelemek:</p>
+
+<ol>
+<li>a nyomtatott mű oldalszáma a következő formában: 
+[kötet]/[4 karakteres oldalszám][alphabetikus kiegészítő] ahol a kötet és az
+aphabetikus kiegészítő (például A, B, R (=recto), V (=verso) és így tovább)
+opcionális elem.</li>
+<li>a digitális oldal URL-je</li>
+</ol>
+
+<p>például:</p>
+
+<pre>
+  1/0003A;hu_b1_rmk-1-113a_012
+</pre>
+
+<p>ez azt jelenti, hogy az első kötet 0003A oldala megfelel az mek.oszk.hu/08800/08838-en belül a hu_b1_rmk-1-113a_012.html oldalnak.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/pkiraly/MEKReferenceLinkResolver">Mekreferencelinkresolver</a> is maintained by <a href="https://github.com/pkiraly">pkiraly</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
